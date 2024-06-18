@@ -1,0 +1,7 @@
+name: FactionFlyModule
+version: '${project.version}'
+main: org.rammex.factionflymodule.FactionFlyModule
+commands:
+  ffly:
+    description: Activer ou désactiver le fly dans vos claims
+    permission: factionflymodule.fly
