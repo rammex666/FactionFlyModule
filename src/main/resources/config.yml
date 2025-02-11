@@ -1,0 +1,10 @@
+messages:
+  desactivated: "§8[§a✔§8] §7Vous avez désactivé le vol dans votre faction."
+  activated: "§8[§a✔§8] §7Vous avez activé le vol dans votre faction."
+  noPerm: "§8[§c✘§8] §7Vous n'avez pas la permission d'utiliser cette commande."
+  noPermFly: "§8[§c✘§8] §7Vous n'avez pas la permission de voler."
+  claimleave: "§8[§cX§8] §7Vous avez quitté vos claims, le vol a été désactivé."
+  notinclaim: "§8[§cX§8] §7Vous n'êtes pas dans vos claims."
+  flytimeusage: "§8[§cX§8] §7Utilisation: /flytime <secondes> <nomdujoueur>"
+  timeadded: "§8[§a✔§8] §7Vous avez ajouté §a%time%§7 secondes de vol à §a%player%§7."
+  timeexpired: "§8[§cX§8] §7Votre temps de vol a expiré."

@@ -13,13 +13,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.rammex.factionflymodule.FactionFlyModule;
+import org.rammex.factionflymodule.util.MessagesConfigManager;
 
 import java.util.HashSet;
 import java.util.UUID;
 
 public class FlyCommand implements CommandExecutor, Listener {
     private final FactionFlyModule plugin;
-    private final HashSet<UUID> flyingPlayers;
+    public static HashSet<UUID> flyingPlayers;
 
     public FlyCommand(FactionFlyModule plugin) {
         this.plugin = plugin;
@@ -32,6 +33,7 @@ public class FlyCommand implements CommandExecutor, Listener {
         try {
             Player player = (Player) sender;
             if (!player.hasPermission("factionflymodule.fly")) {
+                player.sendMessage(MessagesConfigManager.getMessage("messages.noPerm"));
                 return true;
             }
 
@@ -41,33 +43,19 @@ public class FlyCommand implements CommandExecutor, Listener {
                 if(flyingPlayers.contains(playerUUID)) {
                     player.setAllowFlight(false);
                     flyingPlayers.remove(playerUUID);
-                    player.sendMessage("§8[§a✔§8] §7Vous avez désactivé le vol dans votre faction.");
+                    player.sendMessage(MessagesConfigManager.getMessage("messages.desactivated"));
                 } else {
                     player.setAllowFlight(true);
                     flyingPlayers.add(playerUUID);
-                    player.sendMessage("§8[§a✔§8] §7Vous avez activé le vol dans votre faction.");
+                    player.sendMessage(MessagesConfigManager.getMessage("messages.activated"));
                 }
             } else {
-                player.sendMessage("§8[§cX§8] §7Vous n'êtes pas dans vos claims.");
+                player.sendMessage(MessagesConfigManager.getMessage("messages.notinclaim"));
             }
         } catch (ClassCastException ignored) {
         }
-
         return true;
     }
 
-    @EventHandler
-    public void onPlayerMove(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-        UUID playerUUID = player.getUniqueId();
 
-        if (flyingPlayers.contains(playerUUID)) {
-            FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
-            if (!Board.getInstance().getFactionAt(new FLocation(player.getLocation())).equals(fPlayer.getFaction())) {
-                player.setAllowFlight(false);
-                flyingPlayers.remove(playerUUID);
-                player.sendMessage("§8[§cX§8] §7Vous avez quitté vos claims, le vol a été désactivé.");
-            }
-        }
-    }
 }
