@@ -8,3 +8,4 @@ messages:
   flytimeusage: "§8[§cX§8] §7Utilisation: /flytime <secondes> <nomdujoueur>"
   timeadded: "§8[§a✔§8] §7Vous avez ajouté §a%time%§7 secondes de vol à §a%player%§7."
   timeexpired: "§8[§cX§8] §7Votre temps de vol a expiré."
+  notime: "§8[§cX§8] §7Vous n'avez pas de temps de vol."

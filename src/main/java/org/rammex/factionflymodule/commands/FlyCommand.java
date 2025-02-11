@@ -13,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.rammex.factionflymodule.FactionFlyModule;
+import org.rammex.factionflymodule.data.DbManager;
 import org.rammex.factionflymodule.util.MessagesConfigManager;
 
 import java.util.HashSet;
@@ -45,6 +46,10 @@ public class FlyCommand implements CommandExecutor, Listener {
                     flyingPlayers.remove(playerUUID);
                     player.sendMessage(MessagesConfigManager.getMessage("messages.desactivated"));
                 } else {
+                    if(DbManager.getPlayerTime(player.getName()) <= 0) {
+                        player.sendMessage(MessagesConfigManager.getMessage("messages.notime"));
+                        return true;
+                    }
                     player.setAllowFlight(true);
                     flyingPlayers.add(playerUUID);
                     player.sendMessage(MessagesConfigManager.getMessage("messages.activated"));
