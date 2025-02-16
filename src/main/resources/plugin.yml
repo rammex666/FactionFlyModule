@@ -5,3 +5,6 @@ commands:
   ffly:
     description: Activer ou désactiver le fly dans vos claims
     permission: factionflymodule.fly
+  flytime:
+    description: Ajouter du temps de fly à un joueur
+    permission: factionflymodule.flytime
